@@ -8,9 +8,8 @@ export default async function districtAPI(req, res) {
     case 'GET':
        response = await getDistrict(req);
        if (response === null){
-        response = {
-            error: "No district found"
-        }
+        res.status(404).send({error: "No district found"});
+        return;
         }
         break;
     case 'POST':
@@ -19,6 +18,7 @@ export default async function districtAPI(req, res) {
     case 'DELETE':
         response = await deleteDistrict(req);
         break;
+
     default:
         response = { error: "Method not allowed" };
   }

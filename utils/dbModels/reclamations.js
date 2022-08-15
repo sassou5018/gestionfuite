@@ -1,13 +1,19 @@
 import { Schema, model, models } from 'mongoose';
 
 const reclamationSchema = new Schema({
+  "description": {
+    type: String,
+    required: true
+  },
   "city":{
     type: Schema.ObjectId,
-    ref: "cities"
+    ref: "cities",
+    required: true
   },
   "district":{
     type: Schema.ObjectId,
-    ref: "districts"
+    ref: "districts",
+    required: true
   },
   "time":{
     type: Date,
