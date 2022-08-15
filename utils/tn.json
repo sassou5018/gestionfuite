@@ -1,6 +1,6 @@
 [
   {
-    "city": "Tunis", 
+    "city_name": "Tunis", 
     "lat": "36.8008", 
     "lng": "10.1800", 
     "country": "Tunisia", 
@@ -11,7 +11,7 @@
     "population_proper": "1056247"
   }, 
   {
-    "city": "Sfax", 
+    "city_name": "Sfax", 
     "lat": "34.7400", 
     "lng": "10.7600", 
     "country": "Tunisia", 
@@ -22,7 +22,7 @@
     "population_proper": "272801"
   }, 
   {
-    "city": "Sousse", 
+    "city_name": "Sousse", 
     "lat": "35.8333", 
     "lng": "10.6333", 
     "country": "Tunisia", 
@@ -33,7 +33,7 @@
     "population_proper": "221530"
   }, 
   {
-    "city": "Kairouan", 
+    "city_name": "Kairouan", 
     "lat": "35.6833", 
     "lng": "10.1000", 
     "country": "Tunisia", 
@@ -44,7 +44,7 @@
     "population_proper": "186653"
   }, 
   {
-    "city": "Métouia", 
+    "city_name": "Métouia", 
     "lat": "33.9600", 
     "lng": "10.0000", 
     "country": "Tunisia", 
@@ -55,7 +55,7 @@
     "population_proper": "170000"
   }, 
   {
-    "city": "Kebili", 
+    "city_name": "Kebili", 
     "lat": "33.7050", 
     "lng": "8.9650", 
     "country": "Tunisia", 
@@ -66,7 +66,7 @@
     "population_proper": "163257"
   }, 
   {
-    "city": "Bizerte", 
+    "city_name": "Bizerte", 
     "lat": "37.2744", 
     "lng": "9.8739", 
     "country": "Tunisia", 
@@ -77,7 +77,7 @@
     "population_proper": "142966"
   }, 
   {
-    "city": "Sidi Bouzid", 
+    "city_name": "Sidi Bouzid", 
     "lat": "35.0381", 
     "lng": "9.4858", 
     "country": "Tunisia", 
@@ -88,7 +88,7 @@
     "population_proper": "122676"
   }, 
   {
-    "city": "Gabès", 
+    "city_name": "Gabès", 
     "lat": "33.8814", 
     "lng": "10.0983", 
     "country": "Tunisia", 
@@ -99,7 +99,7 @@
     "population_proper": "116323"
   }, 
   {
-    "city": "Ariana", 
+    "city_name": "Ariana", 
     "lat": "36.8625", 
     "lng": "10.1956", 
     "country": "Tunisia", 
@@ -110,7 +110,7 @@
     "population_proper": "114486"
   }, 
   {
-    "city": "Jendouba", 
+    "city_name": "Jendouba", 
     "lat": "36.5011", 
     "lng": "8.7803", 
     "country": "Tunisia", 
@@ -121,7 +121,7 @@
     "population_proper": "113116"
   }, 
   {
-    "city": "Gafsa", 
+    "city_name": "Gafsa", 
     "lat": "34.4167", 
     "lng": "8.7833", 
     "country": "Tunisia", 
@@ -132,7 +132,7 @@
     "population_proper": "111170"
   }, 
   {
-    "city": "Msaken", 
+    "city_name": "Msaken", 
     "lat": "35.7333", 
     "lng": "10.5833", 
     "country": "Tunisia", 
@@ -143,7 +143,7 @@
     "population_proper": "110000"
   }, 
   {
-    "city": "Medenine", 
+    "city_name": "Medenine", 
     "lat": "33.3547", 
     "lng": "10.5053", 
     "country": "Tunisia", 
@@ -154,7 +154,7 @@
     "population_proper": "109409"
   }, 
   {
-    "city": "Béja", 
+    "city_name": "Béja", 
     "lat": "36.7256", 
     "lng": "9.1817", 
     "country": "Tunisia", 
@@ -165,7 +165,7 @@
     "population_proper": "109299"
   }, 
   {
-    "city": "Kasserine", 
+    "city_name": "Kasserine", 
     "lat": "35.1667", 
     "lng": "8.8333", 
     "country": "Tunisia", 
@@ -176,7 +176,7 @@
     "population_proper": "108794"
   }, 
   {
-    "city": "Monastir", 
+    "city_name": "Monastir", 
     "lat": "35.7780", 
     "lng": "10.8262", 
     "country": "Tunisia", 
@@ -187,7 +187,7 @@
     "population_proper": "104535"
   }, 
   {
-    "city": "Hammamet", 
+    "city_name": "Hammamet", 
     "lat": "36.4167", 
     "lng": "10.6000", 
     "country": "Tunisia", 
@@ -198,7 +198,7 @@
     "population_proper": "97579"
   }, 
   {
-    "city": "Tataouine", 
+    "city_name": "Tataouine", 
     "lat": "32.9333", 
     "lng": "10.4500", 
     "country": "Tunisia", 
@@ -209,7 +209,7 @@
     "population_proper": "95775"
   }, 
   {
-    "city": "La Marsa", 
+    "city_name": "La Marsa", 
     "lat": "36.8764", 
     "lng": "10.3253", 
     "country": "Tunisia", 
@@ -220,7 +220,7 @@
     "population_proper": "92987"
   }, 
   {
-    "city": "Ben Arous", 
+    "city_name": "Ben Arous", 
     "lat": "36.7531", 
     "lng": "10.2189", 
     "country": "Tunisia", 
@@ -231,7 +231,7 @@
     "population_proper": "88322"
   }, 
   {
-    "city": "Sakiet ez Zit", 
+    "city_name": "Sakiet ez Zit", 
     "lat": "34.8000", 
     "lng": "10.7700", 
     "country": "Tunisia", 
@@ -242,7 +242,7 @@
     "population_proper": "87512"
   }, 
   {
-    "city": "Zarzis", 
+    "city_name": "Zarzis", 
     "lat": "33.5000", 
     "lng": "11.1167", 
     "country": "Tunisia", 
@@ -253,7 +253,7 @@
     "population_proper": "80000"
   }, 
   {
-    "city": "Ben Gardane", 
+    "city_name": "Ben Gardane", 
     "lat": "33.1389", 
     "lng": "11.2167", 
     "country": "Tunisia", 
@@ -264,7 +264,7 @@
     "population_proper": "79912"
   }, 
   {
-    "city": "Mahdia", 
+    "city_name": "Mahdia", 
     "lat": "35.5047", 
     "lng": "11.0622", 
     "country": "Tunisia", 
@@ -275,7 +275,7 @@
     "population_proper": "79545"
   }, 
   {
-    "city": "Houmt Souk", 
+    "city_name": "Houmt Souk", 
     "lat": "33.8667", 
     "lng": "10.8500", 
     "country": "Tunisia", 
@@ -286,7 +286,7 @@
     "population_proper": "75904"
   }, 
   {
-    "city": "Fouchana", 
+    "city_name": "Fouchana", 
     "lat": "36.6987", 
     "lng": "10.1693", 
     "country": "Tunisia", 
@@ -297,7 +297,7 @@
     "population_proper": "74868"
   }, 
   {
-    "city": "Le Kram", 
+    "city_name": "Le Kram", 
     "lat": "36.8333", 
     "lng": "10.3167", 
     "country": "Tunisia", 
@@ -308,7 +308,7 @@
     "population_proper": "74132"
   }, 
   {
-    "city": "Le Bardo", 
+    "city_name": "Le Bardo", 
     "lat": "36.8092", 
     "lng": "10.1406", 
     "country": "Tunisia", 
@@ -319,7 +319,7 @@
     "population_proper": "73953"
   }, 
   {
-    "city": "El Kef", 
+    "city_name": "El Kef", 
     "lat": "36.1667", 
     "lng": "8.7000", 
     "country": "Tunisia", 
@@ -330,7 +330,7 @@
     "population_proper": "73706"
   }, 
   {
-    "city": "El Hamma", 
+    "city_name": "El Hamma", 
     "lat": "33.8864", 
     "lng": "9.7951", 
     "country": "Tunisia", 
@@ -341,7 +341,7 @@
     "population_proper": "73512"
   }, 
   {
-    "city": "Nabeul", 
+    "city_name": "Nabeul", 
     "lat": "36.4514", 
     "lng": "10.7361", 
     "country": "Tunisia", 
@@ -352,7 +352,7 @@
     "population_proper": "73128"
   }, 
   {
-    "city": "Djemmal", 
+    "city_name": "Djemmal", 
     "lat": "35.6400", 
     "lng": "10.7600", 
     "country": "Tunisia", 
@@ -363,7 +363,7 @@
     "population_proper": "70587"
   }, 
   {
-    "city": "Korba", 
+    "city_name": "Korba", 
     "lat": "36.5667", 
     "lng": "10.8667", 
     "country": "Tunisia", 
@@ -374,7 +374,7 @@
     "population_proper": "68966"
   }, 
   {
-    "city": "Menzel Temime", 
+    "city_name": "Menzel Temime", 
     "lat": "36.7833", 
     "lng": "10.9833", 
     "country": "Tunisia", 
@@ -385,7 +385,7 @@
     "population_proper": "65645"
   }, 
   {
-    "city": "Ghardimaou", 
+    "city_name": "Ghardimaou", 
     "lat": "36.4503", 
     "lng": "8.4397", 
     "country": "Tunisia", 
@@ -396,7 +396,7 @@
     "population_proper": "64170"
   }, 
   {
-    "city": "Menzel Bourguiba", 
+    "city_name": "Menzel Bourguiba", 
     "lat": "37.1500", 
     "lng": "9.7833", 
     "country": "Tunisia", 
@@ -407,7 +407,7 @@
     "population_proper": "61919"
   }, 
   {
-    "city": "Radès", 
+    "city_name": "Radès", 
     "lat": "36.7667", 
     "lng": "10.2833", 
     "country": "Tunisia", 
@@ -418,7 +418,7 @@
     "population_proper": "59998"
   }, 
   {
-    "city": "Manouba", 
+    "city_name": "Manouba", 
     "lat": "36.8000", 
     "lng": "10.1000", 
     "country": "Tunisia", 
@@ -429,7 +429,7 @@
     "population_proper": "58792"
   }, 
   {
-    "city": "Kélibia", 
+    "city_name": "Kélibia", 
     "lat": "36.8475", 
     "lng": "11.0939", 
     "country": "Tunisia", 
@@ -440,7 +440,7 @@
     "population_proper": "58491"
   }, 
   {
-    "city": "Rass el Djebel", 
+    "city_name": "Rass el Djebel", 
     "lat": "37.2150", 
     "lng": "10.1200", 
     "country": "Tunisia", 
@@ -451,7 +451,7 @@
     "population_proper": "58241"
   }, 
   {
-    "city": "Tebourba", 
+    "city_name": "Tebourba", 
     "lat": "36.8295", 
     "lng": "9.8411", 
     "country": "Tunisia", 
@@ -462,7 +462,7 @@
     "population_proper": "50458"
   }, 
   {
-    "city": "El Jem", 
+    "city_name": "El Jem", 
     "lat": "35.3000", 
     "lng": "10.7167", 
     "country": "Tunisia", 
@@ -473,7 +473,7 @@
     "population_proper": "48611"
   }, 
   {
-    "city": "Douz", 
+    "city_name": "Douz", 
     "lat": "33.4572", 
     "lng": "9.0258", 
     "country": "Tunisia", 
@@ -484,7 +484,7 @@
     "population_proper": "47182"
   }, 
   {
-    "city": "Hammam Sousse", 
+    "city_name": "Hammam Sousse", 
     "lat": "35.8589", 
     "lng": "10.5939", 
     "country": "Tunisia", 
@@ -495,7 +495,7 @@
     "population_proper": "42691"
   }, 
   {
-    "city": "Hammam-Lif", 
+    "city_name": "Hammam-Lif", 
     "lat": "36.7308", 
     "lng": "10.3275", 
     "country": "Tunisia", 
@@ -506,7 +506,7 @@
     "population_proper": "42518"
   }, 
   {
-    "city": "Sbiba", 
+    "city_name": "Sbiba", 
     "lat": "35.5433", 
     "lng": "9.0736", 
     "country": "Tunisia", 
@@ -517,7 +517,7 @@
     "population_proper": "42091"
   }, 
   {
-    "city": "Sejenane", 
+    "city_name": "Sejenane", 
     "lat": "37.0564", 
     "lng": "9.2382", 
     "country": "Tunisia", 
@@ -528,7 +528,7 @@
     "population_proper": "40166"
   }, 
   {
-    "city": "Tozeur", 
+    "city_name": "Tozeur", 
     "lat": "33.9197", 
     "lng": "8.1336", 
     "country": "Tunisia", 
@@ -539,7 +539,7 @@
     "population_proper": "37365"
   }, 
   {
-    "city": "Dar Chabanne", 
+    "city_name": "Dar Chabanne", 
     "lat": "36.4700", 
     "lng": "10.7500", 
     "country": "Tunisia", 
@@ -550,7 +550,7 @@
     "population_proper": "35859"
   }, 
   {
-    "city": "Aïne Draham", 
+    "city_name": "Aïne Draham", 
     "lat": "36.7833", 
     "lng": "8.7000", 
     "country": "Tunisia", 
@@ -561,7 +561,7 @@
     "population_proper": "35400"
   }, 
   {
-    "city": "Bou Salem", 
+    "city_name": "Bou Salem", 
     "lat": "36.6111", 
     "lng": "8.9698", 
     "country": "Tunisia", 
@@ -572,7 +572,7 @@
     "population_proper": "35192"
   }, 
   {
-    "city": "Ez Zahra", 
+    "city_name": "Ez Zahra", 
     "lat": "36.7439", 
     "lng": "10.3083", 
     "country": "Tunisia", 
@@ -583,7 +583,7 @@
     "population_proper": "34962"
   }, 
   {
-    "city": "Skhira", 
+    "city_name": "Skhira", 
     "lat": "34.3006", 
     "lng": "10.0708", 
     "country": "Tunisia", 
@@ -594,7 +594,7 @@
     "population_proper": "34511"
   }, 
   {
-    "city": "Akouda", 
+    "city_name": "Akouda", 
     "lat": "35.8712", 
     "lng": "10.5712", 
     "country": "Tunisia", 
@@ -605,7 +605,7 @@
     "population_proper": "34494"
   }, 
   {
-    "city": "Mateur", 
+    "city_name": "Mateur", 
     "lat": "37.0400", 
     "lng": "9.6650", 
     "country": "Tunisia", 
@@ -616,7 +616,7 @@
     "population_proper": "32546"
   }, 
   {
-    "city": "Rhennouch", 
+    "city_name": "Rhennouch", 
     "lat": "33.9397", 
     "lng": "10.0650", 
     "country": "Tunisia", 
@@ -627,7 +627,7 @@
     "population_proper": "28051"
   }, 
   {
-    "city": "Dahmani", 
+    "city_name": "Dahmani", 
     "lat": "35.9424", 
     "lng": "8.8284", 
     "country": "Tunisia", 
@@ -638,7 +638,7 @@
     "population_proper": "27907"
   }, 
   {
-    "city": "El Alia", 
+    "city_name": "El Alia", 
     "lat": "37.1667", 
     "lng": "10.0333", 
     "country": "Tunisia", 
@@ -649,7 +649,7 @@
     "population_proper": "27075"
   }, 
   {
-    "city": "Siliana", 
+    "city_name": "Siliana", 
     "lat": "36.0819", 
     "lng": "9.3747", 
     "country": "Tunisia", 
@@ -660,7 +660,7 @@
     "population_proper": "26960"
   }, 
   {
-    "city": "Zaghouan", 
+    "city_name": "Zaghouan", 
     "lat": "36.4028", 
     "lng": "10.1433", 
     "country": "Tunisia", 

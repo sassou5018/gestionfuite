@@ -1,23 +1,19 @@
 import { VStack, Input, Select, Toast, useToast, FormLabel, AlertDialogCloseButton} from '@chakra-ui/react'
+import { CacheProvider } from '@emotion/react'
 import Head from 'next/head'
-import connectMongo from '../utils/connectMongo'
-import districts from '../utils/dbModels/districts'
-import cities from '../utils/tn.json'
-function Reclamation({ districtList, error }){
+import { getCity } from '../utils/citiesGetSet';
+function Reclamation({ cities, error }){
     const toast = useToast()
-    const testElem = districtList.map(test=>{
-        return(
-            <option key={test._id}>{test.nom_district}</option>
-        )
-    })
+    
+    //console.log(cities)
     
     const cityElem = cities.map(cite=>{
+        //console.log(cite.id)
         return(
-            <option key={cite.population_proper}>{cite.city}</option>
+            <option key={cite._id} value={cite._id}>{cite.city_name}</option>
         )
     })
 
-    const gouvernorats = ["Ariana", "Beja", "Ben Arous" ]
 
     return(
         <>
@@ -44,7 +40,7 @@ function Reclamation({ districtList, error }){
             <FormLabel>Le District Le Plus Proche
                 <br/>
                 <Select width="250px" placeholder="District">
-                    {testElem}
+                    <option>Test</option>
                 </Select>
             </FormLabel>
             
@@ -55,25 +51,13 @@ function Reclamation({ districtList, error }){
 }
 
 export const getServerSideProps = async () => {
-    try {
-      console.log('CONNECTING TO MONGO');
-      await connectMongo();
-      console.log('CONNECTED TO MONGO');
-      const filter = {};
-  
-      console.log('FETCHING DOCUMENTS');
-      const districtList = await districts.find(filter).sort({"nom_district": 1});
-      console.log('FETCHED DOCUMENTS');
-  
-      return {
+    const citiesFetch = await getCity({ body: {} });
+    //console.log(cities);
+    return {
         props: {
-          districtList: JSON.parse(JSON.stringify(districtList)),
-        },
-      };
-    } catch (error) {
-      console.log(error);
-      return error;
+            cities: JSON.parse(JSON.stringify(citiesFetch))
+        }
     }
-  };
+};
 
 export default Reclamation
