@@ -21,7 +21,6 @@ export default async function reclamationAPI(req, res) {
             default:
                 response = { error: "Method not allowed" };
         }
-        console.log(response);
         res.status(200).json(response);
     } catch (err) {
         res.status(500).send(err);

@@ -6,7 +6,7 @@ async function getReclamation(req){
     if (req.body.reclamation_id){
         try {
             connectMongo();
-            const reclamation = await reclamations.findOne({reclamation_id: req.body.reclamation_id});
+            const reclamation = await reclamations.findOne({reclamation_id: req.body.reclamation_id}).populate('city', 'district');
             return reclamation;
         } catch (err) {
             throw err;
@@ -14,7 +14,7 @@ async function getReclamation(req){
     } else {
         try {
             connectMongo();
-            const reclamation = await reclamations.find();
+            const reclamation = await reclamations.find().populate('city', 'district');
             return reclamation;
         } catch (err) {
             throw err;

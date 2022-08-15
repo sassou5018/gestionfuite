@@ -1,4 +1,5 @@
 import { Schema, model, models } from 'mongoose';
+import mongoose from 'mongoose';
 
 const reclamationSchema = new Schema({
   "description": {
@@ -6,14 +7,12 @@ const reclamationSchema = new Schema({
     required: true
   },
   "city":{
-    type: Schema.ObjectId,
-    ref: "cities",
-    required: true
+    type: Schema.Types.ObjectId,
+    ref: "cities"
   },
   "district":{
-    type: Schema.ObjectId,
-    ref: "districts",
-    required: true
+    type: Schema.Types.ObjectId,
+    ref: "districts"
   },
   "time":{
     type: Date,
@@ -25,6 +24,6 @@ const reclamationSchema = new Schema({
   }
 });
 
-const reclamations = models.districts || model('reclamations', reclamationSchema);
+const reclamations = mongoose.models.reclamations || mongoose.model('reclamations', reclamationSchema);
 
 export default reclamations;
