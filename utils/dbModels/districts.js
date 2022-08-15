@@ -13,7 +13,7 @@ const districtSchema = new Schema({
     unique: true
   },
   "city":{
-    type: mongoose.Schema.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "cities"
   }
 });

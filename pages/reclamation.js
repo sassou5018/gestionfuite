@@ -1,8 +1,10 @@
 import { VStack, Input, Select, Toast, useToast, FormLabel, AlertDialogCloseButton} from '@chakra-ui/react'
 import { CacheProvider } from '@emotion/react'
 import Head from 'next/head'
+import axios from 'axios'
 import { getCity } from '../utils/citiesGetSet';
-function Reclamation({ cities, error }){
+import { getDistrict } from '../utils/districtsGetSet';
+function Reclamation({ cities, districts, error }){
     const toast = useToast()
     
     //console.log(cities)
@@ -13,6 +15,13 @@ function Reclamation({ cities, error }){
             <option key={cite._id} value={cite._id}>{cite.city_name}</option>
         )
     })
+
+
+    const districtElem = districts.map(dist=>{
+        return (
+            <option key={dist._id} value={dist._id}>{dist.nom_district}</option>
+        )
+    } )
 
 
     return(
@@ -40,7 +49,7 @@ function Reclamation({ cities, error }){
             <FormLabel>Le District Le Plus Proche
                 <br/>
                 <Select width="250px" placeholder="District">
-                    <option>Test</option>
+                    {districtElem}
                 </Select>
             </FormLabel>
             
@@ -52,12 +61,14 @@ function Reclamation({ cities, error }){
 
 export const getServerSideProps = async () => {
     const citiesFetch = await getCity({ body: {} });
-    //console.log(cities);
+    const districtsFetch = await getDistrict({ body: {} });
     return {
         props: {
-            cities: JSON.parse(JSON.stringify(citiesFetch))
+            cities: JSON.parse(JSON.stringify(citiesFetch)),
+            districts: JSON.parse(JSON.stringify(districtsFetch))
         }
     }
+    
 };
 
 export default Reclamation
