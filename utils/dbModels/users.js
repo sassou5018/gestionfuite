@@ -1,8 +1,8 @@
 import { Schema, model, models } from 'mongoose';
 
 const usersSchema = new Schema({
-  "email": String,
-  "pwd": String,
+  "email": {String, required: true, unique: true},
+  "pwd": {String, required: true, minlength: 6},
   "userType": {
     type: String,
     enum: ['normalUser', 'Admin'],
