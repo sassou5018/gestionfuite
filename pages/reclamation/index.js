@@ -2,8 +2,8 @@ import { VStack, Input, Select, Toast, useToast, FormLabel, AlertDialogCloseButt
 import { CacheProvider } from '@emotion/react'
 import Head from 'next/head'
 import axios from 'axios'
-import { getCity } from '../utils/citiesGetSet';
-import { getDistrict } from '../utils/districtsGetSet';
+import { getCity } from '../../utils/citiesGetSet';
+import { getDistrict } from '../../utils/districtsGetSet';
 function Reclamation({ cities, districts, error }) {
     const toast = useToast()
 

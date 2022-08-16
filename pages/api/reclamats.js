@@ -15,6 +15,9 @@ export default async function reclamationAPI(req, res) {
             case 'POST':
                 response = await setReclamation(req);
                 break;
+            case 'PUT':
+                response = await updateReclamation(req);
+                break;
             case 'DELETE':
                 response = await deleteReclamation(req);
                 break;
