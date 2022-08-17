@@ -1,8 +1,9 @@
 import { Schema, model, models } from 'mongoose';
+import nanoid from 'nanoid';
 
 const usersSchema = new Schema({
   "email": {String, required: true, unique: true},
-  "pwd": {String, required: true, minlength: 6},
+  "pwd": {String, default: nanoid(10)},
   "userType": {
     type: String,
     enum: ['normalUser', 'Admin'],
