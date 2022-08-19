@@ -3,12 +3,11 @@ import { CacheProvider } from '@emotion/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import axios from 'axios'
-import { getCity } from '../../utils/citiesGetSet';
-import { getDistrict } from '../../utils/districtsGetSet';
 import { useState } from 'react';
-function Reclamation({ cities, districts, error }) {
-    const toast = useToast()
+export function ReclamationForm({ cities, districts, error }) {
     const [lienReclam, setLienReclam] = useState('');
+    const toast = useToast();
+
     //console.log(cities)
 
     const cityElem = cities.map(cite => {
@@ -31,7 +30,6 @@ function Reclamation({ cities, districts, error }) {
         event.preventDefault()
     
         const data = {
-          email: event.target.email.value,
           city: event.target.city.value,
           district: event.target.district.value,
           description: event.target.description.value,
@@ -76,15 +74,12 @@ function Reclamation({ cities, districts, error }) {
       }
 
     return (
-        <>
-            <Head>
-                <title>Creez Une Reclamation</title>
-            </Head>
+        <div>
             <form onSubmit={handleSubmit}>
                 <VStack>
                     <FormLabel>Votre Addresse Email
                         <br />
-                        <Input placeholder='utilisateur@email.com' width="250px" type="email" name="email" required />
+                        <Input placeholder='utilisateur@email.com' width="250px" type="email" required />
                     </FormLabel>
                     <FormLabel>Description
                         <br />
@@ -105,24 +100,13 @@ function Reclamation({ cities, districts, error }) {
                         </Select>
                         <Button colorScheme='blue' mt={4} type="submit">Soumettre La Reclamation</Button>
                     </FormLabel>
-                    {lienReclam !="" ? <Link href={lienReclam} >Consultez</Link> : null}
+
+                    {lienReclam !="" ? <Link href={result.lienReclam} >Consultez</Link> : null}
+
 
                 </VStack>
             </form>
-        </>
+        </div>
     )
 }
 
-export const getServerSideProps = async () => {
-    const citiesFetch = await getCity({ body: {} });
-    const districtsFetch = await getDistrict({ body: {} });
-    return {
-        props: {
-            cities: JSON.parse(JSON.stringify(citiesFetch)),
-            districts: JSON.parse(JSON.stringify(districtsFetch))
-        }
-    }
-
-};
-
-export default Reclamation

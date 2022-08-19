@@ -1,9 +1,10 @@
 import { Schema, model, models } from 'mongoose';
-import nanoid from 'nanoid';
+import {nanoid} from 'nanoid';
+
 
 const usersSchema = new Schema({
-  "email": {String, required: true, unique: true},
-  "pwd": {String, default: nanoid(10)},
+  "email": {type: String, required: true, unique: true},
+  "pwd": {type: String, default: nanoid()},
   "userType": {
     type: String,
     enum: ['normalUser', 'Admin'],
@@ -14,4 +15,4 @@ const usersSchema = new Schema({
 
 const users = models.users || model('users', usersSchema);
 
-export default citites;
+export default users;
