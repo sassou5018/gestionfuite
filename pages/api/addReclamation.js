@@ -6,7 +6,11 @@ export default async function addReclamation (req, res) {
     if (req.method == 'POST'){
         let user = await getUser(req);
         if (user!=null){
-            let reclamation = await setReclamation(req);
+            let reclamation = await setReclamation({body:{
+                description: req.body.description,
+                city: req.body.city,
+                district: req.body.district
+            }});
             await pushRecUser({ body: { email: user.email, reclamation_id: reclamation._id } });
             res.status(200).json({
                 message: "Reclamation Ajoutée",
@@ -14,7 +18,11 @@ export default async function addReclamation (req, res) {
             });
             return;
         } else if (user == null){
-            let reclamation = await setReclamation(req);
+            let reclamation = await setReclamation({body:{
+                description: req.body.description,
+                city: req.body.city,
+                district: req.body.district
+            }});
             let newUser = await setUser(req);
             await pushRecUser({ body: { email: req.body.email, reclamation_id: reclamation._id } });
             res.status(200).json({

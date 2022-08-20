@@ -14,7 +14,7 @@ async function getReclamation(req){
     } else {
         try {
             connectMongo();
-            const reclamation = await reclamations.find().populate('city', 'district');
+            const reclamation = await reclamations.find().populate('city district');
             return reclamation;
         } catch (err) {
             throw err;
@@ -53,4 +53,15 @@ async function deleteReclamation(req){
     }
 }
 
-export {getReclamation, setReclamation, deleteReclamation};
+async function getOneReclamation(req){
+    try {
+        connectMongo();
+        const reclamation = await reclamations.findById(req.body.reclamation_id).populate('city district');
+        return reclamation;
+    } catch (err) {
+        return {error: err};
+    }
+}
+
+
+export {getReclamation, setReclamation, deleteReclamation, getOneReclamation, updateReclamation};

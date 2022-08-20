@@ -12,7 +12,7 @@ function Reclamation({ cities, districts, error }) {
     //console.log(cities)
 
     const cityElem = cities.map(cite => {
-        //console.log(cite.id)
+        //console.log(cite._id)
         return (
             <option key={cite._id} value={cite._id}>{cite.city_name}</option>
         )
