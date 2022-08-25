@@ -3,14 +3,16 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import style from '../styles/Home.module.css'
-
+import { SessionProvider } from 'next-auth/react';
 Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on('routeChangeComplete', () => NProgress.done()); Router.events.on('routeChangeError', () => NProgress.done());  
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <SessionProvider session={pageProps.session}>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </SessionProvider>
   )
 }
 
