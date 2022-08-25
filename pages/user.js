@@ -1,7 +1,7 @@
 import {useSession} from 'next-auth/react';
 import Reclam from '../components/Reclam';
 import { unstable_getServerSession } from 'next-auth/next';
-import { authOptions } from './api/auth/[...nextAuth]';
+import { authOptions } from './api/auth/[...nextauth]';
 import users from '../utils/dbModels/users';
 import reclamations from '../utils/dbModels/reclamations';
 import connectMongo from '../utils/connectMongo';
