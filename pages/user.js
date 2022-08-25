@@ -19,13 +19,13 @@ export default function Dashboard({reclams}) {
     const toast = useToast();
     const { data: session } = useSession()
     console.log(reclams)
-    if (session) {
+    if (session && reclams.length > 0) {
     const reclamElem = reclams.map(reclam => {
         async function handleClick(e){
             e.preventDefault();
             const fetchData = {
                 email: session.user.email,
-                reclamation_id: reclam._id
+                reclamation_id: reclam._id.toString()
             }
             console.log(fetchData);
             const endpoint = '/api/pullReclamation';
@@ -46,6 +46,7 @@ export default function Dashboard({reclams}) {
                     isClosable: true
                 })
             } else {
+                console.log(result);
                 toast({
                     title: 'Successfully deleted',
                     status: 'success',
@@ -95,6 +96,9 @@ export default function Dashboard({reclams}) {
         </VStack>
         </>
     )
+  }
+  if (reclams.length === 0){
+    return (<Heading color='red'>Pas De Reclamations associées a ce compte</Heading>)
   }
 }
 

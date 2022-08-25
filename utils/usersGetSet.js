@@ -43,10 +43,12 @@ async function pushRecUser(req){
     }
 }
 
-async function pullRecUser(req){
+async function pullRecUser(reqbody){
     try {
         connectMongo();
-        const user = await users.updateOne({email: req.body.email}, {$pull: {reclamations: { _id:req.body.reclamation_id}}});
+        const reclamId = reqbody.reclamation_id;
+        console.log('reqfrom pull req:' ,reqbody);
+        const user = await users.updateOne({email: reqbody.email}, {$pull: {reclamations: { _id: '63077746ea1aa44f048602ca'}}});
         return user;
     } catch (err) {
         throw err;
