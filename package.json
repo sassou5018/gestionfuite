@@ -25,5 +25,10 @@
   "devDependencies": {
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4"
-  }
+    
+  },
+  "cacheDirectories": [
+    "node_modules/",
+    ".next/cache/"
+  ]
 }
