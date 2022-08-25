@@ -1,9 +1,10 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import userModel from '../../../utils/dbModels/users';
+import users from '../../../utils/dbModels/users';
+import connectMongo from '../../../utils/connectMongo';
+import reclamations from '../../../utils/dbModels/reclamations';
 
-
-export default NextAuth({
+export const authOptions = {
     session: {
         strategy: 'jwt'
     },
@@ -19,16 +20,24 @@ export default NextAuth({
                 if (!credentials.email || !credentials.password) {
                     throw new Error('Email and password are required');
                 }
-                const user = await userModel.findOne({ email: credentials.email });
+                try{
+                    connectMongo();
+                } catch(err){
+                    console.log(err);
+                    throw new Error('Error Connecting to Database try again later');
+                }
+                const user = await users.findOne({ email: credentials.email }).populate('reclamations');
                 if (!user) {
                     throw new Error('User not found');
                 }
                 if (user.pwd !== credentials.password) {
                     throw new Error('Password is incorrect');
                 }
-                return { email: user.email, userType: user.userType, reclamations: user.reclamations };
+                return { email: user.email };
             }
 
         })
     ]
-});
+}
+
+export default NextAuth(authOptions);
