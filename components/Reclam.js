@@ -14,6 +14,7 @@ import Link from 'next/link';
 
 
 export default function Reclam({description, city, district, time, progress, id}) {
+    const dateString= new Date(time).toLocaleString();
     return (
         <Box width='600px' backgroundColor='#EBF8FF' borderRadius='5px' border='solid' borderWidth='1px' overflow='wrap'>
             <HStack p='5px'>
@@ -31,7 +32,7 @@ export default function Reclam({description, city, district, time, progress, id}
                 <StatLabel>Progress:</StatLabel>
                 <StatNumber><StatArrow type='increase' /> {progress}</StatNumber>
                 <StatHelpText>
-                    Soumise Le: <Text fontSize='sm'>{time}</Text>
+                    Soumise Le: <Text fontSize='sm'>{dateString}</Text>
                 </StatHelpText>
                 <Progress value={progress} size='sm' hasStripe colorScheme='blue' />
             </Stat>
