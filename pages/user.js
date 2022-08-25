@@ -2,10 +2,12 @@ import {useSession} from 'next-auth/react';
 import Reclam from '../components/Reclam';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from './api/auth/[...nextauth]';
+import {signOut} from 'next-auth/react';
 import users from '../utils/dbModels/users';
 import reclamations from '../utils/dbModels/reclamations';
 import connectMongo from '../utils/connectMongo';
-import { VStack, Box, Button, Heading, useToast } from '@chakra-ui/react';
+import { VStack, Box, Button, Heading, useToast, IconButton } from '@chakra-ui/react';
+import {CloseIcon, DeleteIcon} from '@chakra-ui/icons';
 import Head from 'next/head';
 import {
     Accordion,
@@ -70,7 +72,7 @@ export default function Dashboard({reclams}) {
             </h2>
             <AccordionPanel pb={4}>
             <Reclam key={reclam._id} description={reclam.description} city={reclam.city} district={reclam.district} time={reclam.time} progress={reclam.progress} id={reclam._id} />
-            <Button colorScheme='red' onClick={handleClick}>Delete</Button>
+            <Button colorScheme='red' onClick={handleClick} leftIcon={<DeleteIcon/>}>Delete</Button>
             </AccordionPanel>
           </AccordionItem>
           </div>
@@ -92,13 +94,19 @@ export default function Dashboard({reclams}) {
             <Accordion allowToggle>
                 {reclamElem}
             </Accordion>
+            <Button colorScheme='red' onClick={signOut} leftIcon={<CloseIcon/>}>Sign Out</Button>
         
         </VStack>
         </>
     )
   }
   if (reclams.length === 0){
-    return (<Heading color='red'>Pas De Reclamations associées a ce compte</Heading>)
+    return (
+    <>
+    <Heading color='red'>Pas De Reclamations associées a ce compte</Heading>
+    <Button colorScheme='red' onClick={signOut} leftIcon={<CloseIcon/>}>Sign Out</Button>
+    </>
+    )
   }
 }
 
