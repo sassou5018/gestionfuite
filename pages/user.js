@@ -16,6 +16,7 @@ import {
     AccordionPanel,
     AccordionIcon,
   } from '@chakra-ui/react';
+import Navbar from '../components/Navbar';
 
 export default function Dashboard({reclams}) {
     const toast = useToast();
@@ -88,6 +89,7 @@ export default function Dashboard({reclams}) {
         <Head>
             <title>Vos Reclamations</title>
         </Head>
+        <Navbar/>
         <Heading>Bienvenue Utilisateur {session.user.email}</Heading>
         <Heading as='h2'>Vos Reclamations:</Heading>
         <VStack>
@@ -103,6 +105,7 @@ export default function Dashboard({reclams}) {
   if (reclams.length === 0){
     return (
     <>
+    <Navbar/>
     <Heading color='red'>Pas De Reclamations associées a ce compte</Heading>
     <Button colorScheme='red' onClick={signOut} leftIcon={<CloseIcon/>}>Sign Out</Button>
     </>

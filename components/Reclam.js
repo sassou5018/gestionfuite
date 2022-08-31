@@ -30,7 +30,7 @@ export default function Reclam({description, city, district, time, progress, id}
             <Divider variant='dashed' />
             <Stat>
                 <StatLabel>Progress:</StatLabel>
-                <StatNumber><StatArrow type='increase' /> {progress}</StatNumber>
+                <StatNumber><StatArrow type='increase' /> {progress}%</StatNumber>
                 <StatHelpText>
                     Soumise Le: <Text fontSize='sm'>{dateString}</Text>
                 </StatHelpText>
@@ -41,3 +41,4 @@ export default function Reclam({description, city, district, time, progress, id}
         </Box>
     )
 }
+

@@ -3,6 +3,7 @@ import Reclam from '../../components/Reclam';
 import Head from 'next/head';
 import {useRouter} from 'next/router';
 import { getOneReclamation } from '../../utils/reclamationsGetSet';
+import Navbar from '../../components/Navbar';
 
 export default function ReclamationId({result}) {
     const router = useRouter();
@@ -10,7 +11,10 @@ export default function ReclamationId({result}) {
     //console.log(id);
         if (result.error) {
         return(
+            <>
+            <Navbar/>
             <h1>404 Pas De Reclamation Avec l'id:{id} Trouvée</h1>
+            </>
         )
         }
         else {
@@ -19,6 +23,7 @@ export default function ReclamationId({result}) {
                 <Head>
                     <title>Reclamation {id} </title>
                 </Head>
+                <Navbar/>
                 <Flex justifyContent='center' alignItems='center' >
                     <Reclam id={id} description={result.description} city={result.city} district={result.district} time={result.time} progress={result.progress} />
                 </Flex>

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { getCity } from '../../utils/citiesGetSet';
 import { getDistrict } from '../../utils/districtsGetSet';
 import { useState } from 'react';
+import Navbar from '../../components/Navbar'
 function Reclamation({ cities, districts, error }) {
     const toast = useToast()
     const [lienReclam, setLienReclam] = useState('');
@@ -80,6 +81,7 @@ function Reclamation({ cities, districts, error }) {
             <Head>
                 <title>Creez Une Reclamation</title>
             </Head>
+            <Navbar />
             <form onSubmit={handleSubmit}>
                 <VStack>
                     <FormLabel>Votre Addresse Email
