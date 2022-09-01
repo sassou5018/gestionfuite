@@ -20,41 +20,30 @@ import {
   import UsersTable from './UsersTable';
 
 
-export default function UsersTab(){
-    const users=[
-        {
-            email: 'test@test.com',
-            userType: 'normalUser',
-            nombreReclam: '1',
-            pwd: 'test'
-        },
-        {
-            email: 'test2@test.com',
-            userType: 'Admin',
-            nombreReclam: '2',
-            pwd: 'test'
-        }
-    ]
+export default function UsersTab({ users }){
+    
 
     const userElement = users.map(user => {
         return <UsersTable userData={user}/>
     } )
     return (
-        <>
+        <div>
         <TableContainer>
             <Table>
                 <TableCaption>Users</TableCaption>
                 <Thead>
-                    <Th>User Email</Th>
-                    <Th>User Type</Th>
-                    <Th>Nombre de Reclams</Th>
-                    <Th>Edit</Th>
+                    <Tr>
+                        <Th>Email</Th>
+                        <Th>User Type</Th>
+                        <Th>Nombre de Reclamations</Th>
+                        <Th>Edit</Th>
+                    </Tr>
                 </Thead>
                 <Tbody>
                     {userElement}
                 </Tbody>
             </Table>
         </TableContainer>
-        </>
+        </div>
     )
 }

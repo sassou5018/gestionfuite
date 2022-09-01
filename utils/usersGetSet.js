@@ -65,4 +65,14 @@ async function deleteUser(req){
     }
 }
 
-export {getUser, setUser, pushRecUser, pullRecUser, deleteUser};
+async function updateUser(req){
+    try {
+        connectMongo();
+        const user = await users.findOneAndUpdate({id: req.body.user_id}, {$set: {user_type: req.body.user_type, email: req.body.email, pwd: req.body.pwd}});
+        return user;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export {getUser, setUser, pushRecUser, pullRecUser, deleteUser, updateUser};

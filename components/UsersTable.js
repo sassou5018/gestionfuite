@@ -21,8 +21,10 @@ import {
     EditableInput,
     EditableTextarea,
     EditablePreview,
-    FormLabel
+    FormLabel,
+    Select
 } from '@chakra-ui/react';
+import { DeleteIcon, CloseIcon, RepeatIcon } from '@chakra-ui/icons';
 export default function UsersTab({ userData }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
@@ -49,18 +51,21 @@ export default function UsersTab({ userData }) {
                                     <EditablePreview />
                                     <EditableInput />
                                 </Editable>
+                                <FormLabel htmlFor="userType">User Type
+                                <Select>
+                                    <option value='normalUser' selected={userData.userType==='normalUser' ? true : false }>Normal User</option>
+                                    <option value='admin' selected={userData.userType==='admin' ? true : false }>Admin</option>
+                                </Select>
+                                </FormLabel>
+                                <Button size='sm' colorScheme='blue' leftIcon={<RepeatIcon/>}>Update</Button>
+                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>}>Delete</Button>
+                                <Button size='sm' colorScheme='gray' onClick={onClose} leftIcon={<CloseIcon/>}>Cancel</Button>
                             </form>
                         </ModalBody>
-
-                        <ModalFooter>
-                            <Button colorScheme='red' mr={3} >
-                                Delete User
-                            </Button>
-                            <Button colorScheme='blue'>Update User</Button>
-                        </ModalFooter>
                     </ModalContent>
                 </Modal>
             </Td>
         </Tr>
-    )
+    );
+    
 }

@@ -1,4 +1,4 @@
-import { getUser, setUser, pushRecUser, pullRecUser, deleteUser } from '../../utils/usersGetSet';
+import { getUser, setUser, pushRecUser, pullRecUser, deleteUser, updateUser } from '../../utils/usersGetSet';
 
 export default async function usersAPI(req, res){
     try{

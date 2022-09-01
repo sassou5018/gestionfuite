@@ -7,10 +7,26 @@ import Head from 'next/head';
 
 
 export default function Admin() {
+    const users=[
+        {
+            id:1,
+            email: 'test@test.com',
+            userType: 'normalUser',
+            nombreReclam: '1',
+            pwd: 'test'
+        },
+        {
+            id:2,
+            email: 'test2@test.com',
+            userType: 'admin',
+            nombreReclam: '2',
+            pwd: 'test'
+        }
+    ]
     return (
         <Box overflow='hidden'>
             <Head>
-                <title>Admin Dashboard</title>
+                <title>Admin</title>
                 <link rel='icon' href='https://www.annuaire.rn.tn/images/sites/803/49/_thumb1/sonede.png'/>
             </Head>
             <Navbar />
@@ -24,7 +40,6 @@ export default function Admin() {
                     <Tab>Cities</Tab>
                     <HStack marginTop='50vh'>
                         <Button size='sm' colorScheme='red'>Sign Out</Button>
-                        <Button size='sm' colorScheme='red'>Sign Out</Button>
                     </HStack>
                     </Flex>
                     
@@ -35,7 +50,13 @@ export default function Admin() {
                         <HomeTab />
                     </TabPanel>
                     <TabPanel>
-                        <UsersTab/>
+                        <UsersTab users={users} />
+                    </TabPanel>
+                    <TabPanel>
+                        <p>three!</p>
+                    </TabPanel>
+                    <TabPanel>
+                        <p>three!</p>
                     </TabPanel>
                     <TabPanel>
                         <p>three!</p>
