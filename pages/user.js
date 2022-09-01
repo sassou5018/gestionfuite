@@ -1,11 +1,13 @@
-import {useSession} from 'next-auth/react';
+import connectMongo from '../utils/connectMongo';
 import Reclam from '../components/Reclam';
+import users from '../utils/dbModels/users';
+import cities from '../utils/dbModels/cities';
+import districts from '../utils/dbModels/districts';
+import {useSession} from 'next-auth/react';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from './api/auth/[...nextauth]';
 import {signOut} from 'next-auth/react';
-import users from '../utils/dbModels/users';
 import reclamations from '../utils/dbModels/reclamations';
-import connectMongo from '../utils/connectMongo';
 import { VStack, Box, Button, Heading, useToast, IconButton } from '@chakra-ui/react';
 import {CloseIcon, DeleteIcon} from '@chakra-ui/icons';
 import Head from 'next/head';
@@ -117,6 +119,7 @@ export default function Dashboard({reclams}) {
   export async function getServerSideProps(context) {
     const session = await unstable_getServerSession(context.req, context.res, authOptions);
     console.log(session);
+    console.log(cities, districts);
     if (session){
         connectMongo();
         const user = await users.findOne({email: session.user.email});
