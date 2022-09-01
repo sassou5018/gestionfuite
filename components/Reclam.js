@@ -31,6 +31,7 @@ import {
 import { EditIcon, CloseIcon } from '@chakra-ui/icons';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 
 
@@ -39,6 +40,7 @@ import { useState } from 'react';
 export default function Reclam({ description, city, district, time, progress, id }) {
     const dateString = new Date(time).toLocaleString();
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const router = useRouter();
     const toast = useToast();
     const [sliderValue, setSliderValue] = useState(progress);
     const handleSubmit = async (event) => {
@@ -77,7 +79,7 @@ export default function Reclam({ description, city, district, time, progress, id
                 isClosable: true,
                 position: 'top',
             })
-            setTimeout(() => { window.location.reload() }, 5000);
+            router.replace(router.asPath);
         } else if (result.error) {
             toast({
                 title: result.error,
