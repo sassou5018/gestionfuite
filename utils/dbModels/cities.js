@@ -8,6 +8,6 @@ const citiesSchema = new Schema({
   }
 });
 
-const cities = models.cities || model('cities', citiesSchema);
+const cities =  models.cities || model('cities', citiesSchema);
 
 export default cities;

@@ -36,7 +36,7 @@ async function setReclamation(req){
 async function updateReclamation(req){
     try {
         connectMongo();
-        const reclamation = await reclamations.updateOne({reclamation_id: req.body.reclamation_id}, {$set: {progress: req.body.progress}});
+        const reclamation = await reclamations.findOneAndUpdate({_id: req.body.reclamation_id}, {$set: {progress: req.body.progress, description: req.body.description}});
         return reclamation;
     } catch (err) {
         throw err;

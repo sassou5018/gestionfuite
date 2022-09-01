@@ -1,4 +1,4 @@
-import { getReclamation, setReclamation, deleteReclamation } from "../../utils/reclamationsGetSet";
+import { getReclamation, setReclamation, deleteReclamation, updateReclamation } from "../../utils/reclamationsGetSet";
 
 
 export default async function reclamationAPI(req, res) {
@@ -22,10 +22,11 @@ export default async function reclamationAPI(req, res) {
                 response = await deleteReclamation(req);
                 break;
             default:
-                response = { error: "Method not allowed" };
+                res.status(500).json({ error: err });
+                return;
         }
-        res.status(200).json(response);
+        res.status(200).json({message: 'success', data: response});
     } catch (err) {
-        res.status(500).send(err);
+        res.status(500).json({ error: err });
     }
 }
