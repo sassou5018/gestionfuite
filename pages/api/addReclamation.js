@@ -13,7 +13,7 @@ export default async function addReclamation (req, res) {
             }});
             await pushRecUser({ body: { email: user.email, reclamation_id: reclamation._id } });
             res.status(200).json({
-                message: "Reclamation Ajoutée",
+                message: `Reclamation Ajoutée avec succès Votre Mot De Passe est ${user.pwd}`,
                 lienReclam: `/reclamation/${reclamation._id}`
             });
             return;
