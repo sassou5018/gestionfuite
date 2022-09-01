@@ -17,6 +17,7 @@ export default function Home() {
     <div style={styling}>
     <Head>
       <title>Systeme de reclamation de fuites</title>
+      <link rel='icon' href='https://www.annuaire.rn.tn/images/sites/803/49/_thumb1/sonede.png'/>
     </Head>
     <Navbar/>
     <Flex justifyContent="center" alignItems="center" height="100vh">

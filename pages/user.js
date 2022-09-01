@@ -88,6 +88,7 @@ export default function Dashboard({reclams}) {
         <>
         <Head>
             <title>Vos Reclamations</title>
+            <link rel='icon' href='https://www.annuaire.rn.tn/images/sites/803/49/_thumb1/sonede.png'/>
         </Head>
         <Navbar/>
         <Heading>Bienvenue Utilisateur {session.user.email}</Heading>
