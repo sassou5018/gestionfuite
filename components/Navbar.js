@@ -38,7 +38,7 @@ export default function Navbar(){
                 <Link href="/user">
                 <MenuItem>{session.status==='authenticated'? 'Your Account' : 'Sign In'}</MenuItem>
                 </Link>
-                <Link href="/">
+                <Link href="/admin">
                 <MenuItem>Admin Dashboard</MenuItem>
                 </Link>
             </MenuList>

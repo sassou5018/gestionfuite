@@ -2,7 +2,10 @@ import Navbar from '../components/Navbar';
 import HomeTab from '../components/HomeTab';
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Button, HStack, Flex, Box } from '@chakra-ui/react';
 import UsersTab from '../components/UsersTab';
+import ReclamationTab from '../components/ReclamationTab';
 import Head from 'next/head';
+import DistrictsTab from '../components/DistrictsTab';
+import CitiesTab from '../components/CitiesTab';
 
 
 
@@ -22,6 +25,36 @@ export default function Admin() {
             nombreReclam: '2',
             pwd: 'test'
         }
+    ]
+    const reclams = [
+        {
+            id:1,
+            city:{city_name :'Tunis'},
+            description:'test',
+            district:{nom_district:'district Nabeul'},
+            progress:100,
+            time:'2020-01-01'
+        },
+        {
+            id:2,
+            city:{city_name :'Sousse'},
+            description:'test',
+            district:{nom_district:'district Jerba'},
+            progress:50,
+            time: '2020-01-01'
+        }
+    ]
+
+    const cities = [
+        {city_name :'Tunis', id:1, admin_name:'Tunis', population:100},
+        {city_name :'Sousse', id:2, population:100},
+        {city_name :'Kairouan', id:3, admin_name:'Kairouan', },
+    ]
+
+    const districts = [
+        {nom_district:'district Nabeul', id:1, city: cities[0], code_district:1},
+        {nom_district:'district Jerba', id:2, city: cities[1], code_district:2},
+        {nom_district:'district Kairouan', id:3, city: cities[2], code_district:3},
     ]
     return (
         <Box overflow='hidden'>
@@ -53,16 +86,17 @@ export default function Admin() {
                         <UsersTab users={users} />
                     </TabPanel>
                     <TabPanel>
-                        <p>three!</p>
+                        <ReclamationTab reclamations={reclams} />
                     </TabPanel>
                     <TabPanel>
-                        <p>three!</p>
+                        <DistrictsTab cities={cities} districts={districts} />
                     </TabPanel>
                     <TabPanel>
-                        <p>three!</p>
+                        <CitiesTab cities={cities} />
                     </TabPanel>
                 </TabPanels>
             </Tabs>
         </Box>
     );
 }
+

@@ -26,10 +26,10 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, AddIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
-import UsersTable from './UsersTable';
+import CitiesTable from './CitiesTable';
 
 
-export default function UsersTab({ users }) {
+export default function CitiesTab({ cities }) {
     const [SearchTerm, setSearchTerm] = useState('');
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -38,15 +38,15 @@ export default function UsersTab({ users }) {
         event.preventDefault()
 
         const data = {
-            email: event.target.email.value,
-            pwd: event.target.pwd.value,
-            userType: event.target.userType.value
+            nom_district: event.target.nom_district.value,
+            city: event.target.city.value,
+            code_district: event.target.code_district.value,
         }
         //console.log('data', data);
 
         const JSONdata = JSON.stringify(data)
 
-        const endpoint = '/api/users'
+        const endpoint = '/api/cities'
 
         const options = {
             method: 'POST',
@@ -82,63 +82,60 @@ export default function UsersTab({ users }) {
         }
     }
 
+    
 
 
-    const userElement = users.filter((val) => {
+    const citiesElement = cities.filter((val) => {
         if (SearchTerm === '') {
             return val;
-        } else if (val.email.toLowerCase().includes(SearchTerm.toLowerCase())) {
-            return val;
-        } else if (val.userType.toLowerCase().includes(SearchTerm.toLowerCase())) {
+        } else if (val.city_name.toLowerCase().includes(SearchTerm.toLowerCase())) {
             return val;
         }
-    }).map(user => {
-        return <UsersTable key={user.id} userData={user} />
+    }).map(city => {
+        return <CitiesTable citiesData={city} />
     })
     return (
         <div>
             <InputGroup>
                 <InputLeftElement pointerEvents='none' children={<SearchIcon />} />
-                <Input placeholder='Flter By User Email Or User Type' onChange={e => { setSearchTerm(e.target.value) }} />
+                <Input placeholder='Filter By City Name' onChange={e => { setSearchTerm(e.target.value) }} />
             </InputGroup>
             <TableContainer>
                 <Table>
-                    <TableCaption>Users</TableCaption>
+                    <TableCaption>Cities</TableCaption>
                     <Thead>
                         <Tr>
-                            <Th>Email</Th>
-                            <Th>User Type</Th>
-                            <Th>Nombre de Reclamations</Th>
+                            <Th>Cité</Th>
+                            <Th>Nom Administratif</Th>
+                            <Th>Population</Th>
                             <Th>Edit</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {userElement}
+                        {citiesElement}
                     </Tbody>
                 </Table>
             </TableContainer>
-            <Button leftIcon={<AddIcon />} colorScheme='green' onClick={onOpen}>Add User</Button>
+            <Button leftIcon={<AddIcon />} colorScheme='green' onClick={onOpen}>Add City</Button>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Add New User</ModalHeader>
+                    <ModalHeader>Add New City</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <form >
-                            <FormLabel htmlFor='email'>Email
-                                <Input id='email' name='email' placeholder='user@email.com' type='email' />
+                        <form onSubmit={handleSubmit} >
+                            <FormLabel htmlFor='nom_district'>Nom Du District
+                                <Input name='nom_district' placeholder='Nom Du District'/>
                             </FormLabel>
-                            <FormLabel htmlFor='password'>Password
-                                <Input id='pwd' name='pwd' placeholder='********' type='password' />
+                            <FormLabel htmlFor='code_district'>Code Du District
+                                <Input name='code_district' placeholder='Code Du District'/>
                             </FormLabel>
-                            <FormLabel htmlFor="userType">User Type
+                            <FormLabel htmlFor="userType">City
                                 <Select name='userType'>
-                                    <option value='normalUser'>Normal User</option>
-                                    <option value='admin'>Admin</option>
+                                    {citiesElement}
                                 </Select>
                             </FormLabel>
                             <Button size='sm' colorScheme='green' leftIcon={<AddIcon />} type='submit'>Add</Button>
-                            <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon />}>Delete</Button>
                             <Button size='sm' colorScheme='gray' onClick={onClose} leftIcon={<CloseIcon />}>Cancel</Button>
                         </form>
                     </ModalBody>

@@ -30,7 +30,7 @@ import { DeleteIcon, CloseIcon, RepeatIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 
 
-export default function UsersTab({ userData }) {
+export default function DistrictsTable({ districtData, cities }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const router = useRouter();
     const toast = useToast();
@@ -38,16 +38,15 @@ export default function UsersTab({ userData }) {
         event.preventDefault()
 
         const data = {
-            email: event.target.email.value,
-            pwd: event.target.pwd.value,
-            userType: event.target.userType.value,
-            user_id: userData.id
+            nom_district: event.target.nom_district.value,
+            city: event.target.city.value,
+            code_district: event.target.code_district.value,
         }
         //console.log('data', data);
 
         const JSONdata = JSON.stringify(data)
 
-        const endpoint = '/api/users'
+        const endpoint = '/api/districts'
 
         const options = {
             method: 'PUT',
@@ -83,18 +82,17 @@ export default function UsersTab({ userData }) {
         }
     }
 
-
     const handleDelete = async (event) => {
         event.preventDefault()
 
         const data = {
-            user_id: userData.id
+            code_district: districtData.code_district
         }
         //console.log('data', data);
 
         const JSONdata = JSON.stringify(data)
 
-        const endpoint = '/api/users'
+        const endpoint = '/api/districts'
 
         const options = {
             method: 'DELTE',
@@ -131,40 +129,43 @@ export default function UsersTab({ userData }) {
     }
 
 
+    const cityElem= cities.map(city => {
+        return <option key={city.id} value={city.id} selected={city.id==districtData.city.id? true : false}>{city.city_name}</option>
+    } )
+
 
 
     return (
         <Tr>
-            <Td>{userData.email}</Td>
-            <Td>{userData.userType}</Td>
-            <Td>{userData.nombreReclam}</Td>
+            <Td>{districtData.nom_district}</Td>
+            <Td>{districtData.city.city_name}</Td>
+            <Td>{districtData.code_district}</Td>
             <Td>
                 <Button size='sm' colorScheme='gray' onClick={onOpen}>Edit</Button>
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
-                        <ModalHeader>Update {userData.email}</ModalHeader>
+                        <ModalHeader>Update {districtData.nom_district}</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
                             <form onSubmit={handleSubmit}>
-                                <FormLabel htmlFor="email">Email</FormLabel>
-                                <Editable defaultValue={userData.email}>
+                                <FormLabel htmlFor="nom_district">Nom District</FormLabel>
+                                <Editable defaultValue={districtData.nom_district}>
                                     <EditablePreview />
-                                    <EditableInput name='email' type='email' />
+                                    <EditableInput name='nom_district' />
                                 </Editable>
-                                <FormLabel htmlFor="password">Password</FormLabel>
-                                <Editable defaultValue={userData.pwd}>
+                                <FormLabel htmlFor="code_district">Code District</FormLabel>
+                                <Editable defaultValue={districtData.code_district}>
                                     <EditablePreview />
-                                    <EditableInput name='pwd'/>
+                                    <EditableInput name='code_district'/>
                                 </Editable>
-                                <FormLabel htmlFor="userType">User Type
-                                <Select name='userType'>
-                                    <option value='normalUser' selected={userData.userType==='normalUser' ? true : false }>Normal User</option>
-                                    <option value='admin' selected={userData.userType==='admin' ? true : false }>Admin</option>
+                                <FormLabel htmlFor="city">City
+                                <Select name='city'>
+                                    {cityElem}
                                 </Select>
                                 </FormLabel>
                                 <Button size='sm' colorScheme='blue' leftIcon={<RepeatIcon/>} type='submit'>Update</Button>
-                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onClick={handleDelete}>Delete</Button>
+                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onclick={handleDelete}>Delete</Button>
                                 <Button size='sm' colorScheme='gray' onClick={onClose} leftIcon={<CloseIcon/>}>Cancel</Button>
                             </form>
                         </ModalBody>

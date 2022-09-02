@@ -33,7 +33,7 @@ export const authOptions = {
                 if (user.pwd !== credentials.password) {
                     throw new Error('Password is incorrect');
                 }
-                return { email: user.email };
+                return { email: user.email, role: user.userType };
             }
 
         })
