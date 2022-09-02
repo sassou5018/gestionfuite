@@ -1,12 +1,11 @@
-import { VStack, Input, Select, Toast, useToast, FormLabel, AlertDialogCloseButton, Button } from '@chakra-ui/react'
-import { CacheProvider } from '@emotion/react'
-import Head from 'next/head'
-import Link from 'next/link'
-import axios from 'axios'
+import { VStack, Input, Select, Toast, useToast, FormLabel, AlertDialogCloseButton, Button } from '@chakra-ui/react';
+import { CacheProvider } from '@emotion/react';
+import Head from 'next/head';
+import Link from 'next/link';
 import { getCity } from '../../utils/citiesGetSet';
 import { getDistrict } from '../../utils/districtsGetSet';
 import { useState } from 'react';
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/Navbar';
 function Reclamation({ cities, districts, error }) {
     const toast = useToast()
     const [lienReclam, setLienReclam] = useState('');

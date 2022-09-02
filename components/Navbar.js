@@ -3,10 +3,12 @@ import { Box, Button, Heading, HStack, Image, useDisclosure,
     Menu,
     MenuButton,
     MenuList } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import Link from "next/link";
 export default function Navbar(){
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const session = useSession();
     return (
         <nav>
         <Box width="100vw" height="8vh" bg="gray.100">
@@ -34,7 +36,7 @@ export default function Navbar(){
             </MenuButton>
             <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
                 <Link href="/user">
-                <MenuItem>Sign In</MenuItem>
+                <MenuItem>{session.status==='authenticated'? 'Your Account' : 'Sign In'}</MenuItem>
                 </Link>
                 <Link href="/">
                 <MenuItem>Admin Dashboard</MenuItem>
