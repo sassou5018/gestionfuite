@@ -144,7 +144,7 @@ export default function Reclam({ description, city, district, time, progress, id
                                         <SliderThumb />
                                     </Slider>
                                 </FormLabel>
-                                <Button colorScheme='red' variant='solid' leftIcon={<CloseIcon />} >Close</Button>
+                                <Button colorScheme='red' variant='solid' leftIcon={<CloseIcon />} onClick={onClose} >Close</Button>
                                 <Button type='submit' colorScheme='blue' variant='solid'>Save</Button>
                             </form>
                         </ModalBody>

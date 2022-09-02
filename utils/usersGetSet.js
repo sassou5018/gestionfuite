@@ -68,7 +68,7 @@ async function deleteUser(req){
 async function updateUser(req){
     try {
         connectMongo();
-        const user = await users.findOneAndUpdate({id: req.body.user_id}, {$set: {user_type: req.body.user_type, email: req.body.email, pwd: req.body.pwd}});
+        const user = await users.findOneAndUpdate({id: req.body.user_id}, {$set: {user_type: req.body.userType, email: req.body.email, pwd: req.body.pwd}});
         return user;
     } catch (err) {
         throw err;
