@@ -93,7 +93,7 @@ export default function Admin({ cities, districts, users, reclamations }) {
                         <Tab>Reclamations</Tab>
                         <Tab>Districts</Tab>
                         <Tab>Cities</Tab>
-                        <HStack marginTop='50vh'>
+                        <HStack marginTop='20vh'>
                             <Button size='sm' colorScheme='red' onClick={signOut}>Sign Out</Button>
                         </HStack>
                     </Flex>

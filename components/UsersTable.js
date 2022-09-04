@@ -27,16 +27,19 @@ import {
     useToast,
     Heading,
     Box,
+    InputGroup,
+    Input,
+    InputLeftElement,
 } from '@chakra-ui/react';
 import {
     Accordion,
     AccordionItem,
     AccordionButton,
     AccordionPanel,
-    AccordionIcon,
+    AccordionIcon
 } from '@chakra-ui/react'
 import Reclam from './Reclam';
-import { DeleteIcon, CloseIcon, RepeatIcon, AddIcon } from '@chakra-ui/icons';
+import { DeleteIcon, CloseIcon, RepeatIcon, AddIcon, SearchIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ReclamForm from './ReclamForm';
@@ -47,6 +50,7 @@ export default function UsersTab({ userData, cities, districts }) {
     const { isOpen: isCheckOpen, onOpen: onCheckOpen, onClose: onCheckClose } = useDisclosure();
     const { isOpen: isAddOpen, onOpen: onAddkOpen, onClose: onAddClose } = useDisclosure();
     const [userReclams, setUserReclams] = useState([]);
+    const [SearchTerm, setSearchTerm] = useState('');
     const router = useRouter();
     const toast = useToast();
     const handleCheckOpen = async () => {
@@ -166,7 +170,15 @@ export default function UsersTab({ userData, cities, districts }) {
     }
     let userReclamsElem;
     if (userReclams != []) {
-        userReclamsElem = userReclams.map((reclam) => {
+        userReclamsElem = userReclams.filter(val=>{
+            if(SearchTerm==''){
+                return val; 
+            } else if (val.city.city_name.toLowerCase().includes(SearchTerm.toLowerCase())){
+                return val;
+            } else if (val.district.nom_district.toLowerCase().includes(SearchTerm.toLowerCase())){
+                return val;
+            }
+        }).map((reclam) => {
             async function handleClick(e) {
                 e.preventDefault();
                 const fetchData = {
@@ -209,7 +221,7 @@ export default function UsersTab({ userData, cities, districts }) {
                     <h2>
                         <AccordionButton>
                             <Box flex='1' textAlign='left'>
-                                Reclamation id: {reclam._id}
+                                Reclamation id: {reclam._id}, City: {reclam.city.city_name}, District: {reclam.district.nom_district}
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
@@ -274,10 +286,14 @@ export default function UsersTab({ userData, cities, districts }) {
                         <ModalCloseButton />
                         <ModalBody>
                             <Box overflow='auto'>
+                                <InputGroup>
+                                    <InputLeftElement pointerEvents='none' children={<SearchIcon />} />
+                                    <Input placeholder='Flter By City Name Or District Name' onChange={e => { setSearchTerm(e.target.value) }} />
+                                </InputGroup>
                                 <Accordion allowToggle>
                                     {userReclams.length === 0 ? <Heading color='red'>No Reclamations</Heading> : userReclamsElem}
                                 </Accordion>
-                                <Button leftIcon={<AddIcon/>} marginTop='15px' onClick={onAddkOpen}>Add Reclamation</Button>
+                                <Button leftIcon={<AddIcon />} marginTop='15px' onClick={onAddkOpen}>Add Reclamation</Button>
                                 <Modal isOpen={isAddOpen} onClose={onAddClose}>
                                     <ReclamForm cities={cities} districts={districts} email={userData._doc.email} onAddClose={onAddClose} onCheckClose={onCheckClose} />
                                 </Modal>
