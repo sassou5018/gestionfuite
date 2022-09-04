@@ -38,9 +38,7 @@ export default function CitiesTab({ cities }) {
         event.preventDefault()
 
         const data = {
-            nom_district: event.target.nom_district.value,
-            city: event.target.city.value,
-            code_district: event.target.code_district.value,
+            city_name: event.target.city_name.value,
         }
         //console.log('data', data);
 
@@ -92,7 +90,7 @@ export default function CitiesTab({ cities }) {
             return val;
         }
     }).map(city => {
-        return <CitiesTable citiesData={city} />
+        return <CitiesTable key={city._id} citiesData={city} />
     })
     return (
         <div>
@@ -101,6 +99,7 @@ export default function CitiesTab({ cities }) {
                 <Input placeholder='Filter By City Name' onChange={e => { setSearchTerm(e.target.value) }} />
             </InputGroup>
             <TableContainer>
+                <Box overflowY="scroll" maxHeight='80vh'>
                 <Table>
                     <TableCaption>Cities</TableCaption>
                     <Thead>
@@ -115,6 +114,7 @@ export default function CitiesTab({ cities }) {
                         {citiesElement}
                     </Tbody>
                 </Table>
+                </Box>
             </TableContainer>
             <Button leftIcon={<AddIcon />} colorScheme='green' onClick={onOpen}>Add City</Button>
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -124,16 +124,8 @@ export default function CitiesTab({ cities }) {
                     <ModalCloseButton />
                     <ModalBody>
                         <form onSubmit={handleSubmit} >
-                            <FormLabel htmlFor='nom_district'>Nom Du District
-                                <Input name='nom_district' placeholder='Nom Du District'/>
-                            </FormLabel>
-                            <FormLabel htmlFor='code_district'>Code Du District
-                                <Input name='code_district' placeholder='Code Du District'/>
-                            </FormLabel>
-                            <FormLabel htmlFor="userType">City
-                                <Select name='userType'>
-                                    {citiesElement}
-                                </Select>
+                            <FormLabel htmlFor='city_name'>City Name
+                                <Input name='city_name' placeholder='City Name'/>
                             </FormLabel>
                             <Button size='sm' colorScheme='green' leftIcon={<AddIcon />} type='submit'>Add</Button>
                             <Button size='sm' colorScheme='gray' onClick={onClose} leftIcon={<CloseIcon />}>Cancel</Button>

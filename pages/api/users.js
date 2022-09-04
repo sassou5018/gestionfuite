@@ -25,8 +25,8 @@ export default async function usersAPI(req, res){
                 response = { error: "Method not allowed" };
         }
         //console.log(response);
-        res.status(200).json(response);
+        res.status(200).json({message: 'Success', data: response});
     } catch (err) {
-        res.status(500).send(err);
+        res.status(500).send({error:'error',err: err});
     }
 }

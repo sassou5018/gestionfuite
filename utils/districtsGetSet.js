@@ -40,23 +40,23 @@ async function setDistrict(req){
 }
 
 async function deleteDistrict(req){
-    if (req.body.nom_district) {
-        try {
-            connectMongo();
-            const district = await districts.deleteOne({district_name: req.body.district_name});
-            return district;
-        } catch (err) {
-            throw err;
-        }
-    } else if (req.body.code_district) {
-        try {
-            connectMongo();
-            const district = await districts.deleteOne({code_district: req.body.code_district});
-            return district;
-        } catch (err) {
-            throw err;
-        }
+    try {
+        connectMongo();
+        const district = await districts.deleteOne({code_district: req.body.code_district});
+        return district;
+    } catch (err) {
+        throw err;
     }
 }
 
-export {getDistrict, setDistrict, deleteDistrict};
+async function updateDistrict(req){
+    try{
+        connectMongo();
+        const district = await districts.updateOne({code_district: req.body.code_district}, req.body);
+        return district;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export {getDistrict, setDistrict, deleteDistrict, updateDistrict};

@@ -22,16 +22,20 @@ import {
     Button,
     useDisclosure,
     FormLabel,
-    Select
+    Select,
+    useToast
 } from '@chakra-ui/react';
 import { SearchIcon, AddIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import UsersTable from './UsersTable';
+import { useRouter } from 'next/router';
 
 
 export default function UsersTab({ users }) {
     const [SearchTerm, setSearchTerm] = useState('');
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const toast = useToast();
+    const router = useRouter();
 
 
     const handleSubmit = async (event) => {
@@ -87,13 +91,14 @@ export default function UsersTab({ users }) {
     const userElement = users.filter((val) => {
         if (SearchTerm === '') {
             return val;
-        } else if (val.email.toLowerCase().includes(SearchTerm.toLowerCase())) {
+        } else if (val._doc.email.toLowerCase().includes(SearchTerm.toLowerCase())) {
             return val;
-        } else if (val.userType.toLowerCase().includes(SearchTerm.toLowerCase())) {
+        } else if (val._doc.userType.toLowerCase().includes(SearchTerm.toLowerCase())) {
             return val;
         }
     }).map(user => {
-        return <UsersTable key={user.id} userData={user} />
+        //console.log('user', user);
+        return <UsersTable key={user._doc._id} userData={user} />
     })
     return (
         <div>
@@ -102,6 +107,7 @@ export default function UsersTab({ users }) {
                 <Input placeholder='Flter By User Email Or User Type' onChange={e => { setSearchTerm(e.target.value) }} />
             </InputGroup>
             <TableContainer>
+            <Box overflowY="scroll" maxHeight='80vh'>
                 <Table>
                     <TableCaption>Users</TableCaption>
                     <Thead>
@@ -116,6 +122,7 @@ export default function UsersTab({ users }) {
                         {userElement}
                     </Tbody>
                 </Table>
+            </Box>
             </TableContainer>
             <Button leftIcon={<AddIcon />} colorScheme='green' onClick={onOpen}>Add User</Button>
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -124,7 +131,7 @@ export default function UsersTab({ users }) {
                     <ModalHeader>Add New User</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <form >
+                        <form onSubmit={handleSubmit} >
                             <FormLabel htmlFor='email'>Email
                                 <Input id='email' name='email' placeholder='user@email.com' type='email' />
                             </FormLabel>

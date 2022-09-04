@@ -33,11 +33,22 @@ export const authOptions = {
                 if (user.pwd !== credentials.password) {
                     throw new Error('Password is incorrect');
                 }
-                return { email: user.email, role: user.userType };
+                return { email: user.email  };
             }
 
         })
-    ]
+    ],
+    callbacks: {
+        async session({ session, token, user }) {
+            //console.log('session', session);
+            //console.log('user', user);
+            //console.log('token', token);
+            const foundUser= await users.findOne({ email: session.user.email });
+           //console.log('foundUser', foundUser);
+          session.user.role = foundUser.userType; // Add role value to user object so it is passed along with session
+          return session;
+      },
+    }
 }
 
 export default NextAuth(authOptions);

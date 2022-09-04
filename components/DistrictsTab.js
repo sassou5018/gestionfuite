@@ -22,16 +22,20 @@ import {
     Button,
     useDisclosure,
     FormLabel,
-    Select
+    Select,
+    useToast
 } from '@chakra-ui/react';
 import { SearchIcon, AddIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import DistrictsTable from './DistrictsTable';
+import { useRouter } from 'next/router';
 
 
 export default function DistrictsTab({ districts, cities }) {
     const [SearchTerm, setSearchTerm] = useState('');
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const toast = useToast();
+    const router = useRouter();
 
 
     const handleSubmit = async (event) => {
@@ -43,6 +47,7 @@ export default function DistrictsTab({ districts, cities }) {
             code_district: event.target.code_district.value,
         }
         //console.log('data', data);
+        console.log('data', data.city);
 
         const JSONdata = JSON.stringify(data)
 
@@ -96,10 +101,11 @@ export default function DistrictsTab({ districts, cities }) {
             return val;
         }
     }).map(district => {
-        return <DistrictsTable key={district.id} districtData={district} cities={cities} />
+        
+        return <DistrictsTable key={district._id} districtData={district} cities={cities} />
     })
     const cityElem= cities.map(city => {
-        return <option key={city.id} value={city.id}>{city.city_name}</option>
+        return <option key={city._id} value={city._id}>{city.city_name}</option>
     } )
     return (
         <div>
@@ -108,6 +114,7 @@ export default function DistrictsTab({ districts, cities }) {
                 <Input placeholder='Filter By District Name or District Code or City' onChange={e => { setSearchTerm(e.target.value) }} />
             </InputGroup>
             <TableContainer>
+            <Box overflowY="scroll" maxHeight='80vh'>
                 <Table>
                     <TableCaption>Districts</TableCaption>
                     <Thead>
@@ -122,6 +129,7 @@ export default function DistrictsTab({ districts, cities }) {
                         {districtElement}
                     </Tbody>
                 </Table>
+                </Box>
             </TableContainer>
             <Button leftIcon={<AddIcon />} colorScheme='green' onClick={onOpen}>Add District</Button>
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -138,7 +146,7 @@ export default function DistrictsTab({ districts, cities }) {
                                 <Input name='code_district' placeholder='Code Du District'/>
                             </FormLabel>
                             <FormLabel htmlFor="userType">City
-                                <Select name='userType'>
+                                <Select name='city'>
                                     {cityElem}
                                 </Select>
                             </FormLabel>

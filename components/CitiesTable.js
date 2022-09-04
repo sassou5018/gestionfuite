@@ -38,15 +38,14 @@ export default function DistrictsTable({ citiesData }) {
         event.preventDefault()
 
         const data = {
-            nom_district: event.target.nom_district.value,
-            city: event.target.city.value,
-            code_district: event.target.code_district.value,
+            city_id: citiesData._id,
+            city_name: event.target.city_name.value,
         }
         //console.log('data', data);
 
         const JSONdata = JSON.stringify(data)
 
-        const endpoint = '/api/districts'
+        const endpoint = '/api/cities'
 
         const options = {
             method: 'PUT',
@@ -86,16 +85,16 @@ export default function DistrictsTable({ citiesData }) {
         event.preventDefault()
 
         const data = {
-            code_district: districtData.code_district
+            city_id: citiesData._id,
         }
         //console.log('data', data);
 
         const JSONdata = JSON.stringify(data)
 
-        const endpoint = '/api/districts'
+        const endpoint = '/api/cities'
 
         const options = {
-            method: 'DELTE',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -147,23 +146,13 @@ export default function DistrictsTable({ citiesData }) {
                         <ModalCloseButton />
                         <ModalBody>
                             <form onSubmit={handleSubmit}>
-                                <FormLabel htmlFor="nom_district">Nom District</FormLabel>
-                                <Editable defaultValue='1'>
+                                <FormLabel htmlFor="city_name">City Name</FormLabel>
+                                <Editable defaultValue={citiesData.city_name}>
                                     <EditablePreview />
-                                    <EditableInput name='nom_district' />
+                                    <EditableInput name='city_name' />
                                 </Editable>
-                                <FormLabel htmlFor="code_district">Code District</FormLabel>
-                                <Editable defaultValue='1'>
-                                    <EditablePreview />
-                                    <EditableInput name='code_district'/>
-                                </Editable>
-                                <FormLabel htmlFor="city">City
-                                <Select name='city'>
-                                    
-                                </Select>
-                                </FormLabel>
                                 <Button size='sm' colorScheme='blue' leftIcon={<RepeatIcon/>} type='submit'>Update</Button>
-                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onclick={handleDelete}>Delete</Button>
+                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onClick={handleDelete}>Delete</Button>
                                 <Button size='sm' colorScheme='gray' onClick={onClose} leftIcon={<CloseIcon/>}>Cancel</Button>
                             </form>
                         </ModalBody>

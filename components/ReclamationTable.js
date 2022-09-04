@@ -90,12 +90,12 @@ export default function ReclamationTable({ reclamationData }) {
 
     return (
         <Tr>
-            <Td>{reclamationData.id}</Td>
+            <Td>{reclamationData._id}</Td>
             <Td>{reclamationData.city.city_name}</Td>
             <Td>{reclamationData.district.nom_district}</Td>
             <Td>{reclamationData.progress}%</Td>
             <Td>
-                <Button variantColor="teal" onClick={onOpen}> Open </Button>
+                <Button colorScheme="teal" onClick={onOpen}> Open </Button>
                 
                 <Modal isOpen={isOpen} onClose={onClose} size='full'>
                     <ModalOverlay />
@@ -104,11 +104,11 @@ export default function ReclamationTable({ reclamationData }) {
                         <ModalCloseButton />
                         <ModalBody>
                             <Center height='80vh'>
-                            <Reclam description={reclamationData.description} city={reclamationData.city} district={reclamationData.district} time={reclamationData.time} progress={reclamationData.progress} id={reclamationData.id} />
+                            <Reclam description={reclamationData.description} city={reclamationData.city} district={reclamationData.district} time={reclamationData.time} progress={reclamationData.progress} id={reclamationData._id} key={reclamationData._id}/>
                             </Center>
                         </ModalBody>
                         <ModalFooter>
-                            <Button variantColor="teal" onClick={onClose}>Close</Button>
+                            <Button colorScheme="teal" onClick={onClose}>Close</Button>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>

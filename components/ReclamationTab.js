@@ -91,9 +91,11 @@ export default function ReclamationsTab({ reclamations }) {
             return val;
         } else if (val.district.nom_district.toLowerCase().includes(SearchTerm.toLowerCase())){
             return val;
+        } else if (val._id.toLowerCase().includes(SearchTerm.toLowerCase())){
+            return val;
         }
     }).map(reclam => {
-        return <ReclamationTable key={reclam.id} reclamationData={reclam} />
+        return <ReclamationTable key={reclam._id} reclamationData={reclam} />
     })
     return (
         <div>
@@ -102,6 +104,7 @@ export default function ReclamationsTab({ reclamations }) {
                 <Input placeholder='Filter By City Or District' onChange={e => { setSearchTerm(e.target.value) }} />
             </InputGroup>
             <TableContainer>
+            <Box overflowY="scroll" maxHeight='80vh'>
                 <Table>
                     <TableCaption>Reclamations</TableCaption>
                     <Thead>
@@ -117,6 +120,7 @@ export default function ReclamationsTab({ reclamations }) {
                         {reclamationElement}
                     </Tbody>
                 </Table>
+            </Box>
             </TableContainer>
         </div>
     )

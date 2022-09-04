@@ -32,14 +32,24 @@ async function setCity(req){
     }
 }
 
-async function deleteCity(req){
-    try {
+async function editCity(req){
+    try{
         connectMongo();
-        const city = await cities.deleteOne({city_name: req.body.city_name});
+        const city = await cities.updateOne({id: req.body.city_id}, req.body);
         return city;
     } catch (err) {
         throw err;
     }
 }
 
-export {getCity, setCity, deleteCity};
+async function deleteCity(req){
+    try {
+        connectMongo();
+        const city = await cities.deleteOne({_id: req.body.city_id});
+        return city;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export {getCity, setCity, deleteCity, editCity};

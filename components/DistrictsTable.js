@@ -82,20 +82,20 @@ export default function DistrictsTable({ districtData, cities }) {
         }
     }
 
-    const handleDelete = async (event) => {
+    const deleteDistrict = async (event) => {
         event.preventDefault()
 
         const data = {
             code_district: districtData.code_district
         }
-        //console.log('data', data);
+        console.log('data', data);
 
         const JSONdata = JSON.stringify(data)
 
         const endpoint = '/api/districts'
 
         const options = {
-            method: 'DELTE',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -130,7 +130,7 @@ export default function DistrictsTable({ districtData, cities }) {
 
 
     const cityElem= cities.map(city => {
-        return <option key={city.id} value={city.id} selected={city.id==districtData.city.id? true : false}>{city.city_name}</option>
+        return <option key={city._id} value={city._id} selected={city._id==districtData.city._id? true : false}>{city.city_name}</option>
     } )
 
 
@@ -165,7 +165,7 @@ export default function DistrictsTable({ districtData, cities }) {
                                 </Select>
                                 </FormLabel>
                                 <Button size='sm' colorScheme='blue' leftIcon={<RepeatIcon/>} type='submit'>Update</Button>
-                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onclick={handleDelete}>Delete</Button>
+                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onClick={deleteDistrict}>Delete</Button>
                                 <Button size='sm' colorScheme='gray' onClick={onClose} leftIcon={<CloseIcon/>}>Cancel</Button>
                             </form>
                         </ModalBody>

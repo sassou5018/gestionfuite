@@ -58,7 +58,8 @@ async function pullRecUser(reqbody){
 async function deleteUser(req){
     try {
         connectMongo();
-        const user = await users.deleteOne({email: req.body.email});
+        console.log('req.body.id: ', req.body.user_id);
+        const user = await users.findOneAndDelete({_id: req.body.user_id});
         return user;
     } catch (err) {
         throw err;
@@ -68,7 +69,7 @@ async function deleteUser(req){
 async function updateUser(req){
     try {
         connectMongo();
-        const user = await users.findOneAndUpdate({id: req.body.user_id}, {$set: {user_type: req.body.userType, email: req.body.email, pwd: req.body.pwd}});
+        const user = await users.findOneAndUpdate({id: req.body.user_id}, {$set: {userType: req.body.userType, email: req.body.email, pwd: req.body.pwd}});
         return user;
     } catch (err) {
         throw err;
