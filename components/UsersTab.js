@@ -31,7 +31,7 @@ import UsersTable from './UsersTable';
 import { useRouter } from 'next/router';
 
 
-export default function UsersTab({ users, cities, districts }) {
+export default function UsersTab({ users, cities, districts, currentUser }) {
     const [SearchTerm, setSearchTerm] = useState('');
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
@@ -98,7 +98,7 @@ export default function UsersTab({ users, cities, districts }) {
         }
     }).map(user => {
         //console.log('user', user);
-        return <UsersTable key={user._doc._id} userData={user} cities={cities} districts={districts} />
+        return <UsersTable key={user._doc._id} userData={user} cities={cities} districts={districts} currentUser={currentUser} />
     })
     return (
         <div>

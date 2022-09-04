@@ -45,7 +45,7 @@ import { useState } from 'react';
 import ReclamForm from './ReclamForm';
 
 
-export default function UsersTab({ userData, cities, districts }) {
+export default function UsersTab({ userData, cities, districts, currentUser }) {
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure();
     const { isOpen: isCheckOpen, onOpen: onCheckOpen, onClose: onCheckClose } = useDisclosure();
     const { isOpen: isAddOpen, onOpen: onAddkOpen, onClose: onAddClose } = useDisclosure();
@@ -241,7 +241,7 @@ export default function UsersTab({ userData, cities, districts }) {
     //console.log('userData', userData._doc._id);
     return (
         <Tr>
-            <Td>{userData._doc.email}</Td>
+            <Td>{currentUser==userData._doc.email? "Vous:": ""} {userData._doc.email}</Td>
             <Td>{userData._doc.userType}</Td>
             <Td>{userData.nombreReclam}</Td>
             <Td>

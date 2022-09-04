@@ -105,7 +105,7 @@ export default function Admin({ cities, districts, users, reclamations }) {
                         <HomeTab />
                     </TabPanel>
                     <TabPanel >
-                        <UsersTab users={users} cities={cities} districts={districts} />
+                        <UsersTab users={users} cities={cities} districts={districts} currentUser={session.data.user.email}/>
                     </TabPanel>
                     <TabPanel >
                         <ReclamationTab reclamations={reclamations} />
