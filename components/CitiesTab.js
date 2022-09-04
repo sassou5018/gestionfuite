@@ -22,16 +22,20 @@ import {
     Button,
     useDisclosure,
     FormLabel,
-    Select
+    Select,
+    useToast
 } from '@chakra-ui/react';
 import { SearchIcon, AddIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import CitiesTable from './CitiesTable';
+import { useRouter } from 'next/router';
 
 
 export default function CitiesTab({ cities }) {
     const [SearchTerm, setSearchTerm] = useState('');
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const toast = useToast()
+    const router = useRouter();
 
 
     const handleSubmit = async (event) => {
