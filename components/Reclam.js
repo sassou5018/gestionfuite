@@ -37,7 +37,7 @@ import { useRouter } from 'next/router';
 
 
 
-export default function Reclam({ description, city, district, time, progress, id }) {
+export default function Reclam({ description, city, district, time, progress, id, onCheckClose }) {
     const dateString = new Date(time).toLocaleString();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const router = useRouter();
@@ -80,6 +80,9 @@ export default function Reclam({ description, city, district, time, progress, id
                 position: 'top',
             })
             router.replace(router.asPath);
+            if (onCheckClose){
+                onCheckClose();
+            }
         } else if (result.error) {
             toast({
                 title: result.error,

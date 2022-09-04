@@ -25,15 +25,50 @@ import {
     Select,
     Toast,
     useToast,
+    Heading,
+    Box,
 } from '@chakra-ui/react';
-import { DeleteIcon, CloseIcon, RepeatIcon } from '@chakra-ui/icons';
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+} from '@chakra-ui/react'
+import Reclam from './Reclam';
+import { DeleteIcon, CloseIcon, RepeatIcon, AddIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import ReclamForm from './ReclamForm';
 
 
-export default function UsersTab({ userData }) {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+export default function UsersTab({ userData, cities, districts }) {
+    const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure();
+    const { isOpen: isCheckOpen, onOpen: onCheckOpen, onClose: onCheckClose } = useDisclosure();
+    const { isOpen: isAddOpen, onOpen: onAddkOpen, onClose: onAddClose } = useDisclosure();
+    const [userReclams, setUserReclams] = useState([]);
     const router = useRouter();
     const toast = useToast();
+    const handleCheckOpen = async () => {
+        console.log('userData', userData);
+        const data = {
+            reclamations: userData._doc.reclamations
+        }
+        const JSONdata = JSON.stringify(data);
+        const endpoint = '/api/getUserReclams';
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSONdata,
+        }
+        const response = await fetch(endpoint, options);
+        const result = await response.json();
+        console.log('result', result);
+        setUserReclams(result.reclams);
+        onCheckOpen();
+    }
     const handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -129,18 +164,77 @@ export default function UsersTab({ userData }) {
             })
         }
     }
+    let userReclamsElem;
+    if (userReclams != []) {
+        userReclamsElem = userReclams.map((reclam) => {
+            async function handleClick(e) {
+                e.preventDefault();
+                const fetchData = {
+                    email: userData._doc.email,
+                    reclamation_id: reclam._id.toString()
+                }
+                console.log(fetchData);
+                const endpoint = '/api/pullReclamation';
+                const options = {
+                    method: 'DELETE',
+                    Headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(fetchData)
+                }
+                const response = await fetch(endpoint, options);
+                const result = await response.json();
+                if (result.error) {
+                    toast({
+                        title: result.error,
+                        status: 'error',
+                        duration: 9000,
+                        isClosable: true
+                    })
+                } else {
+                    console.log(result);
+                    toast({
+                        title: 'Successfully deleted',
+                        status: 'success',
+                        duration: 6000,
+                        isClosable: true
+                    })
+                    router.replace(router.asPath);
+                    onCheckClose();
+                }
+
+            }
+            return (
+                <AccordionItem key={reclam._id}>
+                    <h2>
+                        <AccordionButton>
+                            <Box flex='1' textAlign='left'>
+                                Reclamation id: {reclam._id}
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                        <Reclam key={reclam._id} description={reclam.description} city={reclam.city} district={reclam.district} time={reclam.time} progress={reclam.progress} id={reclam._id} onCheckClose={onCheckClose} />
+                        <Button colorScheme='red' onClick={handleClick} leftIcon={<DeleteIcon />}>Delete</Button>
+                    </AccordionPanel>
+                </AccordionItem>
+            )
+        })
+    }
 
 
 
-//console.log('userData', userData._doc._id);
+
+    //console.log('userData', userData._doc._id);
     return (
         <Tr>
             <Td>{userData._doc.email}</Td>
             <Td>{userData._doc.userType}</Td>
             <Td>{userData.nombreReclam}</Td>
             <Td>
-                <Button size='sm' colorScheme='gray' onClick={onOpen}>Edit</Button>
-                <Modal isOpen={isOpen} onClose={onClose}>
+                <Button size='sm' colorScheme='gray' onClick={onEditOpen}>Edit</Button>
+                <Modal isOpen={isEditOpen} onClose={onEditClose}>
                     <ModalOverlay />
                     <ModalContent>
                         <ModalHeader>Update {userData._doc.email}</ModalHeader>
@@ -155,23 +249,44 @@ export default function UsersTab({ userData }) {
                                 <FormLabel htmlFor="password">Password</FormLabel>
                                 <Editable defaultValue={userData._doc.pwd}>
                                     <EditablePreview />
-                                    <EditableInput name='pwd'/>
+                                    <EditableInput name='pwd' />
                                 </Editable>
                                 <FormLabel htmlFor="userType">User Type
-                                <Select name='userType' defaultValue={userData._doc.userType}>
-                                    <option value='normalUser' >Normal User</option>
-                                    <option value='Admin' >Admin</option>
-                                </Select>
+                                    <Select name='userType' defaultValue={userData._doc.userType}>
+                                        <option value='normalUser' >Normal User</option>
+                                        <option value='Admin' >Admin</option>
+                                    </Select>
                                 </FormLabel>
-                                <Button size='sm' colorScheme='blue' leftIcon={<RepeatIcon/>} type='submit'>Update</Button>
-                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onClick={handleDelete}>Delete</Button>
-                                <Button size='sm' colorScheme='gray' onClick={onClose} leftIcon={<CloseIcon/>}>Cancel</Button>
+                                <Button size='sm' colorScheme='blue' leftIcon={<RepeatIcon />} type='submit'>Update</Button>
+                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon />} onClick={handleDelete}>Delete</Button>
+                                <Button size='sm' colorScheme='gray' onClick={onEditClose} leftIcon={<CloseIcon />}>Cancel</Button>
                             </form>
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+            </Td>
+            <Td>
+                <Button size='sm' colorScheme='teal' onClick={handleCheckOpen}>Voir Reclamations</Button>
+                <Modal isOpen={isCheckOpen} onClose={onCheckClose} size='full'>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>Reclamations de: {userData._doc.email}</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <Box overflow='auto'>
+                                <Accordion allowToggle>
+                                    {userReclams.length === 0 ? <Heading color='red'>No Reclamations</Heading> : userReclamsElem}
+                                </Accordion>
+                                <Button leftIcon={<AddIcon/>} marginTop='15px' onClick={onAddkOpen}>Add Reclamation</Button>
+                                <Modal isOpen={isAddOpen} onClose={onAddClose}>
+                                    <ReclamForm cities={cities} districts={districts} email={userData._doc.email} onAddClose={onAddClose} onCheckClose={onCheckClose} />
+                                </Modal>
+                            </Box>
                         </ModalBody>
                     </ModalContent>
                 </Modal>
             </Td>
         </Tr>
     );
-    
+
 }
