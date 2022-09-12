@@ -142,7 +142,7 @@ export default function UsersTab({ users, cities, districts, currentUser }) {
                             <FormLabel htmlFor="userType">User Type
                                 <Select name='userType'>
                                     <option value='normalUser'>Normal User</option>
-                                    <option value='admin'>Admin</option>
+                                    <option value='Admin'>Admin</option>
                                 </Select>
                             </FormLabel>
                             <Button size='sm' colorScheme='green' leftIcon={<AddIcon />} type='submit'>Add</Button>
