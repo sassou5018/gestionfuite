@@ -1,6 +1,7 @@
 Simple CRUD App for managing and creating user complaints. Made with NEXTJS and MongoDB.
 App is Hosted on Heroku [Heroku](https://gestionfuite.herokuapp.com).
 Or on [railway.app](https://gestionfuite-production.up.railway.app) in case you're seeing this after heroku shuts down their free tier.
+Here's an Admin Account if you're going to mess around: Email: test@test.com , pwd: pzANCftj64SzFYC9yigmy
 
 
 
