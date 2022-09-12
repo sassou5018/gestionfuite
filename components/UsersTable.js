@@ -221,7 +221,7 @@ export default function UsersTab({ userData, cities, districts, currentUser }) {
                     <h2>
                         <AccordionButton>
                             <Box flex='1' textAlign='left'>
-                                Reclamation id: {reclam._id}, City: {reclam.city.city_name}, District: {reclam.district.nom_district}
+                                Reclamation id: {reclam._id}, City: {reclam.city.city_name}, District: {reclam.district!=null ? reclam.district.nom_district: "Unavailable"}
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>

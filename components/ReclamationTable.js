@@ -86,13 +86,13 @@ export default function ReclamationTable({ reclamationData }) {
     }
 
 
-
+    
 
     return (
         <Tr>
             <Td>{reclamationData._id}</Td>
             <Td>{reclamationData.city.city_name}</Td>
-            <Td>{reclamationData.district.nom_district? reclamationData.district.nom_district : "Unvailable" }</Td>
+            <Td>{reclamationData.district===null? "Unavailable" : reclamationData.district.nom_district }</Td>
             <Td>{reclamationData.progress}%</Td>
             <Td>
                 <Button colorScheme="teal" onClick={onOpen}> Open </Button>

@@ -104,7 +104,7 @@ export default function Reclam({ description, city, district, time, progress, id
                 <Text fontSize='xl'>Description: {description}</Text>
                 <Divider variant='dashed' />
                 <Text>Cité :<Link href={`https://www.google.com/search?q=${city.city_name}`} >{city.city_name}</Link></Text>
-                <Text>District : <Link href={`https://www.google.com/search?q=${district.nom_district? district.nom_district : "Unavailable"}`}>{district.nom_district? district.nom_district : "Unavailable"}</Link></Text>
+                <Text>District : <Link href={`https://www.google.com/search?q=${district !=null? district.nom_district : "Unavailable"}`}>{district !=null? district.nom_district : "Unavailable"}</Link></Text>
                 <Divider variant='dashed' />
                 <Stat>
                     <StatLabel>Progress:</StatLabel>
