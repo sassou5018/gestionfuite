@@ -1,5 +1,4 @@
 import Navbar from '../components/Navbar';
-import HomeTab from '../components/HomeTab';
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Button, HStack, Flex, Box } from '@chakra-ui/react';
 import UsersTab from '../components/UsersTab';
 import ReclamationTab from '../components/ReclamationTab';
