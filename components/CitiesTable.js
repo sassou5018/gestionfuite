@@ -25,6 +25,7 @@ import {
     Select,
     Toast,
     useToast,
+    Text,
 } from '@chakra-ui/react';
 import { DeleteIcon, CloseIcon, RepeatIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
@@ -152,8 +153,9 @@ export default function DistrictsTable({ citiesData }) {
                                     <EditableInput name='city_name' />
                                 </Editable>
                                 <Button size='sm' colorScheme='blue' leftIcon={<RepeatIcon/>} type='submit'>Update</Button>
-                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onClick={handleDelete}>Delete</Button>
+                                <Button size='sm' colorScheme='red' leftIcon={<DeleteIcon/>} onClick={handleDelete} disabled>Delete</Button>
                                 <Button size='sm' colorScheme='gray' onClick={onClose} leftIcon={<CloseIcon/>}>Cancel</Button>
+                                <Text size='sm' color='red'>PS: Deleting Cities Breaks the reclamation Tab...</Text>
                             </form>
                         </ModalBody>
                     </ModalContent>

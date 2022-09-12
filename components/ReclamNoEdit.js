@@ -28,7 +28,7 @@ export default function ReclamNoEdit({ description, city, district, time, progre
                 <Text fontSize='xl'>Description: {description}</Text>
                 <Divider variant='dashed' />
                 <Text>Cité :<Link href={`https://www.google.com/search?q=${city.city_name}`} >{city.city_name}</Link></Text>
-                <Text>District : <Link href={`https://www.google.com/search?q=${district.nom_district}`}>{district.nom_district}</Link></Text>
+                <Text>District : <Link href={`https://www.google.com/search?q=${district.nom_district? district.nom_district : "Unavailable"}`}>{district.nom_district? district.nom_district : "Unavailable"}</Link></Text>
                 <Divider variant='dashed' />
                 <Stat>
                     <StatLabel>Progress:</StatLabel>

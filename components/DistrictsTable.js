@@ -138,7 +138,7 @@ export default function DistrictsTable({ districtData, cities }) {
     return (
         <Tr>
             <Td>{districtData.nom_district}</Td>
-            <Td>{districtData.city.city_name}</Td>
+            <Td>{districtData.city.city_name? districtData.city.city_name : "Unvailable"}</Td>
             <Td>{districtData.code_district}</Td>
             <Td>
                 <Button size='sm' colorScheme='gray' onClick={onOpen}>Edit</Button>

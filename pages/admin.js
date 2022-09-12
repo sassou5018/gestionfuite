@@ -88,7 +88,6 @@ export default function Admin({ cities, districts, users, reclamations }) {
             <Tabs orientation='vertical' size='lg' height='99vh'>
                 <TabList>
                     <Flex direction='column'>
-                        <Tab>Home</Tab>
                         <Tab>Users</Tab>
                         <Tab>Reclamations</Tab>
                         <Tab>Districts</Tab>
@@ -101,9 +100,6 @@ export default function Admin({ cities, districts, users, reclamations }) {
                 </TabList>
 
                 <TabPanels>
-                    <TabPanel>
-                        <HomeTab />
-                    </TabPanel>
                     <TabPanel >
                         <UsersTab users={users} cities={cities} districts={districts} currentUser={session.data.user.email}/>
                     </TabPanel>
